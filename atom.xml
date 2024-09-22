@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://rosemary1812.github.io/</id>
+    <title>Rosemary1812</title>
+    <updated>2024-09-22T12:04:30.081Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://rosemary1812.github.io/"/>
+    <link rel="self" href="https://rosemary1812.github.io/atom.xml"/>
+    <subtitle>Do not go gentle into that good night.</subtitle>
+    <logo>https://rosemary1812.github.io/images/avatar.png</logo>
+    <icon>https://rosemary1812.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, Rosemary1812</rights>
+    <entry>
+        <title type="html"><![CDATA[Shell]]></title>
+        <id>https://rosemary1812.github.io/post/shellyi-ge-cu-cao-de-bi-ji/</id>
+        <link href="https://rosemary1812.github.io/post/shellyi-ge-cu-cao-de-bi-ji/">
+        </link>
+        <updated>2024-09-22T11:55:29.000Z</updated>
+        <content type="html"><![CDATA[<p>一份粗糙的笔记，内容整理自<a href="https://missing.csail.mit.edu/2020/shell-tools/">/.missing semester</a>以及Claude的回答。</p>
+<h3 id="附上文档一份方便查阅虽然大概率不会再看">附上文档一份方便查阅（虽然大概率不会再看。。。）</h3>
+<p><a href="https://tldp.org/LDP/abs/html/index.html">Advanced Bash-Scripting Guide</a></p>
+<h2 id="shell-脚本看了大概知道如何实现不过不会用要用到的时候再了解吧">Shell 脚本（看了大概知道如何实现，不过不会用，要用到的时候再了解吧）</h2>
+<p>在 Bash 中编写脚本的步骤如下：</p>
+<h3 id="1-创建脚本文件">1. <strong>创建脚本文件</strong></h3>
+<p>首先，使用文本编辑器（如 <code>vim</code>、<code>nano</code> 或者 <code>gedit</code>）创建一个脚本文件。文件扩展名通常是 <code>.sh</code>，但这不是强制的。</p>
+<pre><code class="language-bash">nano myscript.sh
+</code></pre>
+<h3 id="2-添加-shebang脚本头">2. <strong>添加 Shebang（脚本头）</strong></h3>
+<p>在文件的第一行添加以下代码来指定使用 Bash 来执行脚本：</p>
+<pre><code class="language-bash">#!/bin/bash
+</code></pre>
+<p>这叫做 <strong>shebang</strong>，告诉操作系统要用 <code>/bin/bash</code> 来解释运行这个脚本。</p>
+<h3 id="3-编写脚本内容">3. <strong>编写脚本内容</strong></h3>
+<p>你可以在这个文件中添加你想要运行的 Bash 命令。例如：</p>
+<pre><code class="language-bash">#!/bin/bash
+# This is a simple script that prints &quot;Hello, World!&quot;
+
+echo &quot;Hello, World!&quot;
+</code></pre>
+<h3 id="4-保存并退出编辑器">4. <strong>保存并退出编辑器</strong></h3>
+<p>保存文件并退出编辑器。</p>
+<ul>
+<li>在 <strong>nano</strong> 中：按 <code>Ctrl + O</code>，然后按回车保存，接着 <code>Ctrl + X</code> 退出。</li>
+<li>在 <strong>vim</strong> 中：按 <code>Esc</code>，然后输入 <code>:wq</code> 保存并退出。</li>
+</ul>
+<h3 id="5-给予执行权限">5. <strong>给予执行权限</strong></h3>
+<p>使用 <code>chmod</code> 命令使脚本可执行：</p>
+<pre><code class="language-bash">chmod +x myscript.sh
+</code></pre>
+<h3 id="6-运行脚本">6. <strong>运行脚本</strong></h3>
+<p>现在，你可以通过在终端中输入以下命令运行脚本：</p>
+<pre><code class="language-bash">./myscript.sh
+</code></pre>
+<h3 id="示例简单的脚本">示例：简单的脚本</h3>
+<pre><code class="language-bash">#!/bin/bash
+# A simple script to greet the user
+
+echo &quot;What's your name?&quot;
+read name
+echo &quot;Hello, $name! Welcome to Bash scripting.&quot;
+</code></pre>
+<h3 id="其他提示">其他提示</h3>
+<ul>
+<li>使用 <code>#</code> 来添加注释，帮助你记录脚本的功能。</li>
+<li>使用 <code>read</code> 命令来获取用户输入。</li>
+<li>可以用 <code>if</code>、<code>for</code>、<code>while</code> 等控制结构编写更复杂的逻辑。</li>
+</ul>
+<p>写脚本有时候需要反复测试，开始时从简单的功能开始是个好主意！</p>
+<h2 id="查看命令如何使用">查看命令如何使用</h2>
+<ul>
+<li>如何为特定的命令找到合适的标记呢？例如 <code>ls -l</code>, <code>mv -i</code> 和 <code>mkdir -p</code>。更普遍的是，给您一个命令行，您应该怎样了解如何使用这个命令行并找出它的不同的选项呢？在上一节中我们介绍过，最常用的方法是为对应的命令行添加 <code>-h</code> 或 <code>--help</code> 标记。另外一个更详细的方法则是使用 <code>man</code> 命令。<a href="https://man7.org/linux/man-pages/man1/man.1.html"><code>man</code></a> 命令是手册（manual）的缩写，它提供了命令的用户手册。</li>
+<li>有时候手册内容太过详实，让我们难以在其中查找哪些最常用的标记和语法。 <a href="https://tldr.sh/">TLDR pages</a> 是一个很不错的替代品，它提供了一些案例，可以帮助您快速找到正确的选项。</li>
+</ul>
+<h2 id="查找文件">查找文件</h2>
+<ul>
+<li><mark>find</mark> 所有的类 UNIX 系统都包含一个名为 <a href="https://man7.org/linux/man-pages/man1/find.1.html"><code>find</code></a> 的工具，它是 shell 上用于查找文件的绝佳工具。<code>find</code> 命令会递归地搜索符合条件的文件。</li>
+<li><mark>fd</mark> 尽管 <code>find</code> 用途广泛，它的语法却比较难以记忆。例如，为了查找满足模式 <code>PATTERN</code> 的文件，您需要执行 <code>find -name '*PATTERN*'</code> (如果您希望模式匹配时是不区分大小写，可以使用 <code>-iname</code> 选项）例如，<a href="https://github.com/sharkdp/fd"><code>fd</code></a> 就是一个更简单、更快速、更友好的程序，它可以用来作为 <code>find</code> 的替代品。以模式 <code>PATTERN</code> 搜索的语法是 <code>fd PATTERN</code>。</li>
+<li><mark>locate</mark>大多数人都认为 <code>find</code> 和 <code>fd</code> 已经很好用了，但是有的人可能想知道，我们是不是可以有更高效的方法，例如不要每次都搜索文件而是通过编译索引或建立数据库的方式来实现更加快速地搜索。这就要靠 <a href="https://man7.org/linux/man-pages/man1/locate.1.html"><code>locate</code></a> 了。 <code>locate</code> 使用一个由 <a href="https://man7.org/linux/man-pages/man1/updatedb.1.html"><code>updatedb</code></a> 负责更新的数据库，在大多数系统中 <code>updatedb</code> 都会通过 <a href="https://man7.org/linux/man-pages/man8/cron.8.html"><code>cron</code></a> 每日更新。这便需要我们在速度和时效性之间作出权衡。而且，<code>find</code> 和类似的工具可以通过别的属性比如文件大小、修改时间或是权限来查找文件，<code>locate</code> 则只能通过文件名。 <a href="https://unix.stackexchange.com/questions/60205/locate-vs-find-usage-pros-and-cons-of-each-other">这里</a> 有一个更详细的对比。</li>
+</ul>
+<h2 id="查找代码">查找代码</h2>
+<p><code>grep</code> 有很多选项，这也使它成为一个非常全能的工具。其中我经常使用的有 <code>-C</code> ：获取查找结果的上下文（Context）；<code>-v</code> 将对结果进行反选（Invert），也就是输出不匹配的结果。举例来说， <code>grep -C 5</code> 会输出匹配结果前后五行。当需要搜索大量文件的时候，使用 <code>-R</code> 会递归地进入子目录并搜索所有的文本文件。</p>
+<h2 id="查找-shell-命令">查找 shell 命令</h2>
+<p><code>history</code> 命令允许您以程序员的方式来访问 shell 中输入的历史命令。这个命令会在标准输出中打印 shell 中的历史命令。如果我们要搜索历史记录，则可以利用管道将输出结果传递给 <code>grep</code> 进行模式搜索。 <code>history | grep find</code> 会打印包含 find 子串的命令。</p>
+<h2 id="文件夹导航">文件夹导航</h2>
+<p>还有一些更复杂的工具可以用来概览目录结构，例如 [<code>tree</code>]</p>
+<h2 id="chomd命令">chomd命令</h2>
+<p><code>chmod</code> 是一个用于更改文件或目录权限的命令。在 Unix 和 Linux 操作系统中，<code>chmod</code> 可以设置谁可以读取、写入或执行文件。</p>
+<p>权限分为三种类型：</p>
+<ol>
+<li><strong>读（r）</strong> - 允许查看文件内容。</li>
+<li><strong>写（w）</strong> - 允许修改文件内容。</li>
+<li><strong>执行（x）</strong> - 允许执行文件（对于脚本或程序）。</li>
+</ol>
+<p>权限的设置是针对三类用户：</p>
+<ol>
+<li><strong>文件所有者</strong>（User）</li>
+<li><strong>同组用户</strong>（Group）</li>
+<li><strong>其他用户</strong>（Others）</li>
+</ol>
+<p>使用方式示例：</p>
+<ul>
+<li><code>chmod 755 filename</code>：设置文件所有者具有读、写、执行权限，组用户和其他用户具有读和执行权限。</li>
+<li><code>chmod u+rwx, g+rx, o+rx filename</code>：同样的效果，但以符号方式表示。</li>
+</ul>
+<p>通过 <code>chmod</code> 命令，用户可以灵活控制文件的访问权限。</p>
+<h2 id="其他">其他</h2>
+<ul>
+<li>sudo</li>
+<li>管道</li>
+<li></li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[介绍一下]]></title>
+        <id>https://rosemary1812.github.io/post/jie-shao-yi-xia/</id>
+        <link href="https://rosemary1812.github.io/post/jie-shao-yi-xia/">
+        </link>
+        <updated>2024-09-20T13:44:07.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="动机以及动机的变化">动机以及动机的变化</h3>
+<p>本来建立这个类似于博客的东西是为了上传我的学习周报，但是发现（1）大伙都用csdn（2）后端那些东西似乎要花很多时间，我不确定能不能搞定，所以打算观望一下（即先不上传什么学习周报了）。那么我的新动机是什么呢，大概是记录一下我的学习进度（不仅限于web项目之类的本专业内容），顺便写点随笔（大概率是关于我学习的思考，或是胡说八道）吧。其实有许多平台可供我写点东西，比如具有社交属性的xhs，知乎，wb……虽然没人看但是我也不太想让这些行号建立与我现实生活的强关联；或者pendo或flomo，但是这两个各有各的分工，如果用来记录我的学习进度会让我觉得供我说点闲话的空间被入侵了，还是算了。<br>
+或许是因为博客虽然是开放的，但理论上只会有我一个人看，所以这兼顾了私密性和被人监督的仪式感（什么自相矛盾的描述），这让我觉得很不错，于是继续使用。</p>
+<h3 id="我大概会写点什么">我大概会写点什么</h3>
+<ol>
+<li>我的cs课程学习进度（only自学），回顾我学到了什么，有什么收获</li>
+<li>英语学习进度（这听起来不好玩，但是不得不做。）</li>
+<li>关于我的数学学习（作为菜鸟我至少学完某两本，或是三本书才会写点东西。）</li>
+<li>读书感悟</li>
+<li>一些思考，围绕以上四点展开。</li>
+<li>每月回顾</li>
+</ol>
+<h3 id="其他">其他</h3>
+<p>markdown我已经用得不错了，后续文章会先在obsidian里写好再传上来。我并没有很强的分享欲，而且这个网站基本没什么人看，所以大概会出现一些用大量缩写意义不明的文章，或许以后会有改进，如果我能坚持下去的话。</p>
+<p>THE END</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[测试日报（传到网站上看看效果如何！]]></title>
+        <id>https://rosemary1812.github.io/post/ce-shi-ri-bao-chuan-dao-wang-zhan-shang-kan-kan-xiao-guo-ru-he/</id>
+        <link href="https://rosemary1812.github.io/post/ce-shi-ri-bao-chuan-dao-wang-zhan-shang-kan-kan-xiao-guo-ru-he/">
+        </link>
+        <updated>2024-09-19T14:34:41.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="该笔记来自hereclaude和git官方文档">该笔记来自<a href="https://wkevin.github.io/GitChat/gitchat.html#round-1-%E8%B5%B7%E6%AD%A5">here</a>,claude,和<a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/">git官方文档</a></h3>
+<h4 id="2024919-一些基本的命令">2024.9.19 一些基本的命令</h4>
+<p><code>mkdir filename</code>创建文件夹<br>
+<code>cd</code>进入文件夹<br>
+<code>touch</code>创建文件<br>
+<code>git add</code>暂存<br>
+<code>git commit -m&quot;一些描述&quot;</code>提交更改<br>
+使用命令行查看内容<br>
+快速查看文件内容 <code>cat 2024-09-19_diary.md 查看文件的修改历史：</code> git log -p 2024-09-19_diary.md<br>
+列出所有日记文件<code>ls *_diary.md 搜索特定内容</code>grep &quot;关键词&quot; *_diary.md<br>
+返回上层目录<code>cd</code><br>
+`</p>
+<blockquote>
+<p><em>剩下的内容等我用到/听完the missing semester再说吧！</em><br>
+<em>意外地发现git bash命令行和之前为了听the missing semester 1下的Ubuntu是很相似的，问了ai发现linux的命令也可以在bash里面用。</em></p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2024.9.18]]></title>
+        <id>https://rosemary1812.github.io/post/2024918/</id>
+        <link href="https://rosemary1812.github.io/post/2024918/">
+        </link>
+        <updated>2024-09-18T13:39:41.000Z</updated>
+        <content type="html"><![CDATA[<p>折腾一番之后终于连上了GitHub page，好耶<img src="https://rosemary1812.github.io//post-images/1726666834739.jpg" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+</feed>
